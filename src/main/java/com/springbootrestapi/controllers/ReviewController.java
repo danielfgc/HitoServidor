@@ -20,9 +20,18 @@ public class ReviewController {
     public ResponseEntity<Review> createReview(@RequestBody Review review){
         return new ResponseEntity<Review>(reviewService.createReview(review), HttpStatus.CREATED);
     }
-    @GetMapping
+    @GetMapping()
     public List<Review> getAllReviews(){
         return reviewService.getAllReviews();
+    }
+    @PutMapping("{id}")
+    public ResponseEntity<Review> updateReview(@PathVariable("id") int id, @RequestBody Review review){
+        return new ResponseEntity<Review>(reviewService.updateReview(review, id),HttpStatus.OK);
+    }
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteReview(@PathVariable("id") int id){
+        reviewService.deleteReview(id);
+        return new ResponseEntity<String>("Review deleted successfully", HttpStatus.OK);
     }
 
 }

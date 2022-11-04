@@ -15,7 +15,7 @@ public class Category {
     private int id;
     @Column(name = "category")
     private String category;
+    @JsonManagedReference(value = "reviews")
     @OneToMany(mappedBy = "category")
-    @JsonManagedReference
     private List<Review> reviews;
 }

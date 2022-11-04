@@ -31,4 +31,26 @@ public class ReviewServiceImpl implements ReviewService {
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
+
+    @Override
+    public Review updateReview(Review review, int id) {
+        Review reviewExists = reviewRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Review","id", id));
+        reviewExists.setBody(review.getBody());
+        reviewExists.setTitle(review.getTitle());
+        reviewExists.setCategory(review.getCategory());
+        reviewExists.setTitle(review.getTitle());
+        reviewExists.setValoration(review.getValoration());
+        reviewExists.setLikes(review.getLikes());
+        reviewExists.setDislikes(review.getDislikes());
+        reviewRepository.save(reviewExists);
+        return reviewExists;
+    }
+
+    @Override
+    public void deleteReview(int id) {
+        reviewRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Review","id", id));
+        reviewRepository.deleteById(id);
+
+    }
+
 }

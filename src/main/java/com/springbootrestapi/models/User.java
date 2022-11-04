@@ -16,7 +16,7 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
+    @JsonManagedReference(value = "reviews")
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
     private List<Review> reviews;
 }

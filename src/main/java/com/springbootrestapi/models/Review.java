@@ -1,6 +1,7 @@
 package com.springbootrestapi.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,13 +13,13 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "idUser")
-    @JsonBackReference
     private User user;
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "idCategory")
-    @JsonBackReference
     private Category category;
     @Column(name = "title")
     private String title;
