@@ -41,10 +41,5 @@ public class UserController {
         userService.deleteUser(userId);
         return new ResponseEntity<String>("User deleted successfully!", HttpStatus.OK);
     }
-    @GetMapping("{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
-        return new ResponseEntity<User>(userService.findUserByEmail(email), HttpStatus.OK) ;
-
-    }
 
 }
