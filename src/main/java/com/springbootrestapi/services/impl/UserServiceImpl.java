@@ -40,6 +40,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserByEmail(String email) {
+        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email));
+        if(user.isPresent()){
+            return user.get();
+        }else{
+            throw new ResourceNotFoundException("User","email", email);
+        }
+    }
+
+    @Override
     public User updateUser(User user, int id) {
         User existsUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id",id));
         existsUser.setUsername(user.getUsername());

@@ -19,4 +19,5 @@ public class User {
     @JsonManagedReference(value = "reviews")
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
+
 }
