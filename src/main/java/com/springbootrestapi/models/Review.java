@@ -17,11 +17,9 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "idUser")
     private User user;
-    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "idCategory")
     private Category category;

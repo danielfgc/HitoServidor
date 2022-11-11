@@ -1,4 +1,4 @@
-package com.springbootrestapi.controllers;
+package com.springbootrestapi.controllers.auth;
 
 import com.springbootrestapi.models.User;
 import com.springbootrestapi.services.UserService;
