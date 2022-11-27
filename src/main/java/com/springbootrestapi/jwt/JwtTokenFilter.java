@@ -1,3 +1,4 @@
+
 package com.springbootrestapi.jwt;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 
-
+/*
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
     @Value("${app.jwt.cookieName}")
@@ -84,4 +85,4 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         return userDetails;
     }
-}
+}*/

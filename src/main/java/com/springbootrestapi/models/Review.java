@@ -18,10 +18,10 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne()
-    @JoinColumn(name = "idUser")
+    @JoinColumn(name = "user")
     private User user;
     @ManyToOne()
-    @JoinColumn(name = "idCategory")
+    @JoinColumn(name = "category")
     private Category category;
     @Column(name = "title")
     private String title;
