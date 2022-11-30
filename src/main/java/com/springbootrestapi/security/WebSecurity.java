@@ -56,7 +56,9 @@ class WebSecurity{
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+        http.headers().cacheControl();
         http.csrf().disable();
+        http.cors();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
