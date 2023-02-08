@@ -1,6 +1,7 @@
 package com.springbootrestapi.services.impl;
 
 import com.springbootrestapi.exception.ResourceNotFoundException;
+import com.springbootrestapi.models.Category;
 import com.springbootrestapi.models.Review;
 import com.springbootrestapi.repository.CategoryRepository;
 import com.springbootrestapi.repository.ReviewRepository;
@@ -30,6 +31,11 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
+    }
+
+    @Override
+    public List<Review> getReviewsByCategory(String category) {
+        return reviewRepository.findByCategory(category);
     }
 
     @Override
