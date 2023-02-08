@@ -1,5 +1,6 @@
 package com.springbootrestapi.security;
 
+import com.springbootrestapi.jwt.JwtTokenFilter;
 import com.springbootrestapi.models.User;
 import com.springbootrestapi.repository.UserRepository;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,7 @@ import java.util.Optional;
 class WebSecurity{
 
     @Autowired private UserRepository userRepo;
-    //@Autowired private JwtTokenFilter jwtTokenFilter;
+    @Autowired private JwtTokenFilter jwtTokenFilter;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -64,7 +65,7 @@ class WebSecurity{
         http.authorizeRequests()
                 .anyRequest().permitAll();
 
-/*        http.exceptionHandling()
+        http.exceptionHandling()
                 .authenticationEntryPoint(
                         (request, response, ex) -> {
                             response.sendError(
@@ -74,7 +75,7 @@ class WebSecurity{
                         }
                 );
 
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);*/
+        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
