@@ -4,6 +4,7 @@ import com.springbootrestapi.exception.ResourceNotFoundException;
 import com.springbootrestapi.models.User;
 import com.springbootrestapi.repository.UserRepository;
 import com.springbootrestapi.services.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.lang.module.ResolutionException;
@@ -51,7 +52,9 @@ public class UserServiceImpl implements UserService {
         User existsUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id",id));
         existsUser.setUsername(user.getUsername());
         existsUser.setEmail(user.getEmail());
-        existsUser.setPassword(user.getPassword());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(existsUser.getPassword());
+        existsUser.setPassword(encodedPassword);
         userRepository.save(existsUser);
         return existsUser;
     }
