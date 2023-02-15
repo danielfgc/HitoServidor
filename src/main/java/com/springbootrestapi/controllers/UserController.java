@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -34,6 +34,7 @@ public class UserController {
 
     @PutMapping("{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") int userId, @RequestBody User user){
+        System.out.println(user.getPassword());
         return new ResponseEntity<User>(userService.updateUser(user, userId), HttpStatus.OK);
     }
     @DeleteMapping("{id}")

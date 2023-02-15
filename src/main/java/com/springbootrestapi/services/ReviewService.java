@@ -8,7 +8,7 @@ import java.util.List;
 public interface ReviewService {
     Review createReview(Review review);
     List<Review> getAllReviews();
-    List<Review> getReviewsByCategory(String category);
+    Review getOneReview(int id);
     Review updateReview(Review review, int id);
     void deleteReview(int id);
 }

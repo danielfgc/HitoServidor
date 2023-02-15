@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewController {
@@ -38,6 +38,11 @@ public class ReviewController {
     @GetMapping()
     public List<Review> getAllReviews(){
         return reviewService.getAllReviews();
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Review> getOneUser(@PathVariable("id") int id){
+        return new ResponseEntity<Review>(reviewService.getOneReview(id), HttpStatus.OK);
     }
     @PutMapping("{id}")
     public ResponseEntity<Review> updateReview(@PathVariable("id") int id, @RequestBody Review review){

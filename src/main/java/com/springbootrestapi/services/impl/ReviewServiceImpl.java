@@ -34,9 +34,10 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<Review> getReviewsByCategory(String category) {
-        return reviewRepository.findByCategory(category);
+    public Review getOneReview(int id) {
+        return reviewRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Review","id", id));
     }
+
 
     @Override
     public Review updateReview(Review review, int id) {

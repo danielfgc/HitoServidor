@@ -11,7 +11,7 @@ import org.springframework.http.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin()
 @RestController
 public class AuthController {
     @Autowired AuthenticationManager authManager;

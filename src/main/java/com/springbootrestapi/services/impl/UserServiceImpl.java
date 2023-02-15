@@ -53,7 +53,10 @@ public class UserServiceImpl implements UserService {
         existsUser.setUsername(user.getUsername());
         existsUser.setEmail(user.getEmail());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(existsUser.getPassword());
+        String password = "";
+        password = user.getPassword();
+        System.out.println(password);
+        String encodedPassword = passwordEncoder.encode(password);
         existsUser.setPassword(encodedPassword);
         userRepository.save(existsUser);
         return existsUser;
