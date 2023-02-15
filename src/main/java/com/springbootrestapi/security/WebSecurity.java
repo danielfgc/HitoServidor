@@ -73,6 +73,10 @@ class WebSecurity{
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
+                .antMatchers("/api/users").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/reviews").authenticated()
+                .antMatchers(HttpMethod.PUT, "/api/reviews").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/api/reviews").authenticated()
                 .anyRequest().permitAll();
 
         http.exceptionHandling()

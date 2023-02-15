@@ -1,7 +1,12 @@
 package com.springbootrestapi.controllers;
 
+import com.springbootrestapi.models.Category;
 import com.springbootrestapi.models.Review;
+import com.springbootrestapi.models.ReviewReq;
+import com.springbootrestapi.models.User;
+import com.springbootrestapi.services.CategoryService;
 import com.springbootrestapi.services.ReviewService;
+import com.springbootrestapi.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +17,22 @@ import java.util.List;
 @RequestMapping("/api/reviews")
 public class ReviewController {
     private ReviewService reviewService;
+    private UserService userService;
+    private CategoryService categoryService;
 
-    public ReviewController(ReviewService reviewService) {
+    public ReviewController(ReviewService reviewService, UserService userService, CategoryService categoryService) {
         this.reviewService = reviewService;
+        this.userService = userService;
+        this.categoryService = categoryService;
     }
+
     @PostMapping()
-    public ResponseEntity<Review> createReview(@RequestBody Review review){
+    public ResponseEntity<Review> createReview(@RequestBody ReviewReq reviewreq){
+        Review review = reviewreq.getReview();
+        User user = userService.getOneUser(reviewreq.getIdUser());
+        Category category = categoryService.getOneCategory(reviewreq.getIdCategory());
+        review.setUser(user);
+        review.setCategory(category);
         return new ResponseEntity<Review>(reviewService.createReview(review), HttpStatus.CREATED);
     }
     @GetMapping()

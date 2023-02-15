@@ -1,5 +1,6 @@
 package com.springbootrestapi.services.impl;
 
+import com.springbootrestapi.exception.ResourceNotFoundException;
 import com.springbootrestapi.models.Category;
 import com.springbootrestapi.repository.CategoryRepository;
 import com.springbootrestapi.services.CategoryService;
@@ -18,5 +19,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> getCategories() {
         return categoryRepository.findAll();
+    }
+
+    @Override
+    public Category getOneCategory(int idCategory) {
+        return categoryRepository.findById(idCategory).orElseThrow(() -> new ResourceNotFoundException("category", "id",idCategory));
     }
 }

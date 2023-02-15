@@ -1,6 +1,7 @@
 package com.springbootrestapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Category  implements Serializable {
     private int id;
     @Column(name = "category")
     private String category;
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Review> reviews;
 }

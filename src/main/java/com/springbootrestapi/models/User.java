@@ -23,8 +23,10 @@ public class User implements Serializable, UserDetails {
     private String username;
     @Column(name = "email")
     private String email;
+    @JsonIgnore
     @Column(name = "password")
     private String password;
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
     @JsonIgnore
